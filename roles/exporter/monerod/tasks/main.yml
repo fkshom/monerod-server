@@ -1,17 +1,17 @@
 - name: git clone files
   git:
-    src: https://github.com/fkshom/docker-monerod
-    dst: /tmp/docker-monerod
+    src: https://github.com/fkshom/monerod-exporter
+    dst: /tmp/monerod-exporter
   delegate-to: localhost
 
 - name: copy files
   copy:
-    src: /tmp/docker-monerod
-    dest: /home/monero/docker-monerod
+    src: /tmp/monerod-exporter
+    dest: /home/monero/monerod-exporter
 
 - name: docker-compose up -d
   docker_compose:
-    project_src: /home/monero/docker-monerod
+    project_src: /home/monero/monerod-exporter
     build: yes
     restarted: yes
 
@@ -20,5 +20,5 @@
     chain: INPUT
     protocol: tcp
     match: tcp
-    destination_port: 18089
+    destination_port: 18083
     jump: ACCEPT
