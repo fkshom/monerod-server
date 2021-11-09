@@ -1,17 +1,21 @@
+# - name: install docker-compose py
+#   pip:
+#     name: docker-compose
+
 - name: git clone files
   git:
-    src: https://github.com/fkshom/docker-monerod
-    dst: /tmp/docker-monerod
-  delegate-to: localhost
+    repo: https://github.com/fkshom/docker-monerod
+    dest: /tmp/docker-monerod
+  delegate_to: localhost
 
-- name: copy files
-  copy:
-    src: /tmp/docker-monerod
-    dest: /home/monero/docker-monerod
+# - name: copy files
+#   copy:
+#     src: /tmp/docker-monerod
+#     dest: /home/user/
 
 - name: docker-compose up -d
   docker_compose:
-    project_src: /home/monero/docker-monerod
+    project_src: /home/user/docker-monerod
     build: yes
     restarted: yes
 
@@ -20,5 +24,5 @@
     chain: INPUT
     protocol: tcp
     match: tcp
-    destination_port: 18089
+    destination_port: "18089"
     jump: ACCEPT
