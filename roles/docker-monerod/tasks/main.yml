@@ -8,10 +8,19 @@
     dest: /tmp/docker-monerod
   delegate_to: localhost
 
-# - name: copy files
-#   copy:
-#     src: /tmp/docker-monerod
-#     dest: /home/user/
+- name: copy files
+  copy:
+    src: /tmp/docker-monerod
+    dest: /home/user/
+
+- name: create volume directory
+  file:
+    path: /home/user/docker-monerod/volumes
+    state: directory
+    owner: 1000
+    group: 1000
+    mode: 0755
+    recurse: yes
 
 - name: docker-compose up -d
   docker_compose:

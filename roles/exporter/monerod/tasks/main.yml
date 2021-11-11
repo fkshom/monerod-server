@@ -10,7 +10,7 @@
     dest: /home/user/
 
 - name: docker-compose up -d
-  docker_service:
+  docker_compose:
     project_src: /home/user/monerod-exporter
     build: yes
     restarted: yes

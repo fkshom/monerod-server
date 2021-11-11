@@ -5,3 +5,5 @@
       tags: docker-monerod
     - role: exporter/monerod
       tags: exporter/monerod
+    - role: docker-monerod-keepalived
+      tags: docker-monerod-keepalived
